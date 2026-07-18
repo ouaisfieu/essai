@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Ligne — Dossier citoyen sur la rupture du contrat social belge (1944–2026)</title>
+<meta name="description" content="Un dossier réflexif, écrit du point de vue du citoyen, sur le démantèlement de l'État social belge sous la coalition Arizona (2024–2026) : seuils, falaises, contagion sociale et barricades constitutionnelles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ECEDE8;
+  --paper-2:#E2E4DC;
+  --ink:#181B1F;
+  --ink-soft:#3A3E42;
+  --rouge:#BE3218;
+  --rouge-dim:#8F2A16;
+  --bleu:#2A4A80;
+  --gris:#7E817A;
+  --hairline:#C9CBC2;
+  --maxw:1080px;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --serif:'Spectral',Georgia,serif;
+  --disp:'Archivo',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:1.075rem;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--rouge);color:var(--paper)}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--rouge)}
+:focus-visible{outline:3px solid var(--rouge);outline-offset:3px}
+
+/* ---------- La Ligne : motif du seuil ---------- */
+.seuil{
+  display:flex;align-items:center;gap:1rem;
+  max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  color:var(--rouge);
+}
+.seuil::before,.seuil::after{
+  content:"";flex:1;border-top:2px dashed var(--rouge);opacity:.85;
+}
+.seuil span{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  white-space:nowrap;text-transform:uppercase;
+}
+
+/* ---------- Barre de progression ---------- */
+#barre{position:fixed;top:0;left:0;height:3px;width:0;background:var(--rouge);z-index:99}
+
+/* ---------- Navigation ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--hairline);
+}
+nav .in{
+  max-width:var(--maxw);margin:0 auto;padding:.6rem 24px;
+  display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap;
+}
+nav .marque{
+  font-family:var(--disp);font-weight:900;font-stretch:110%;
+  font-size:.95rem;letter-spacing:.02em;color:var(--ink);text-decoration:none;
+}
+nav .marque em{font-style:normal;color:var(--rouge)}
+nav ol{display:flex;gap:1rem;list-style:none;flex-wrap:wrap}
+nav ol a{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+}
+nav ol a:hover{color:var(--rouge)}
+
+/* ---------- Héro ---------- */
+header.hero{
+  max-width:var(--maxw);margin:0 auto;padding:5rem 24px 3rem;
+}
+.hero .eyebrow{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--bleu);margin-bottom:1.4rem;
+}
+.hero h1{
+  font-family:var(--disp);font-weight:900;font-stretch:118%;
+  font-size:clamp(2.6rem,7.5vw,5.6rem);
+  line-height:.98;text-transform:uppercase;letter-spacing:-.01em;
+  margin-bottom:1.2rem;
+}
+.hero h1 .rouge{color:var(--rouge)}
+.hero .sous{
+  max-width:46ch;font-size:1.2rem;line-height:1.6;color:var(--ink-soft);
+  margin-bottom:2.6rem;
+}
+.hero .sous strong{color:var(--ink)}
+.chiffres{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  border-top:1px solid var(--ink);border-left:1px solid var(--ink);
+}
+.chiffres div{
+  border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:1rem 1.1rem;background:var(--paper-2);
+}
+.chiffres b{
+  display:block;font-family:var(--disp);font-weight:900;font-stretch:105%;
+  font-size:1.9rem;line-height:1.1;font-variant-numeric:tabular-nums;
+}
+.chiffres small{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-soft);display:block;margin-top:.35rem;
+}
+.chiffres .alerte b{color:var(--rouge)}
+
+/* ---------- Sections « pièces » ---------- */
+main{display:block}
+section.piece{
+  max-width:var(--maxw);margin:0 auto;padding:4.5rem 24px 3.5rem;
+}
+.piece-tete{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;margin-bottom:2.2rem}
+.piece-num{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--paper);background:var(--ink);padding:.45rem .7rem;white-space:nowrap;
+}
+.piece h2{
+  font-family:var(--disp);font-weight:900;font-stretch:112%;
+  font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.05;text-transform:uppercase;
+}
+.piece h3{
+  font-family:var(--disp);font-weight:700;font-stretch:105%;
+  font-size:1.2rem;margin:2.2rem 0 .8rem;
+}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:2.5rem;align-items:start}
+@media(max-width:820px){.cols{grid-template-columns:1fr}.piece-tete{grid-template-columns:1fr}}
+.texte p{margin-bottom:1.1rem;max-width:66ch}
+.texte p.lede{font-size:1.22rem;line-height:1.6;color:var(--ink)}
+.texte em{font-style:italic}
+.texte .drop::first-letter{
+  font-family:var(--disp);font-weight:900;font-size:3.2em;float:left;
+  line-height:.82;padding:.06em .12em 0 0;color:var(--rouge);
+}
+
+/* marge citoyenne */
+aside.marge{
+  border-left:3px solid var(--rouge);padding:.2rem 0 .2rem 1.1rem;
+  font-size:.94rem;line-height:1.6;color:var(--ink-soft);
+  position:sticky;top:76px;
+}
+aside.marge .qui{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--rouge);display:block;margin-bottom:.5rem;
+}
+aside.marge p{margin-bottom:.8rem;font-style:italic}
+
+/* tableaux */
+table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.94rem}
+caption{
+  caption-side:top;text-align:left;font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:.5rem;
+}
+th,td{border:1px solid var(--hairline);padding:.55rem .7rem;text-align:left;vertical-align:top}
+th{
+  font-family:var(--mono);font-weight:500;font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;background:var(--paper-2);
+}
+td b{font-variant-numeric:tabular-nums}
+tr.total td{background:var(--ink);color:var(--paper);font-weight:600}
+
+/* chronologie */
+.chrono{list-style:none;border-left:2px solid var(--ink);margin:1.6rem 0 .5rem;padding-left:0}
+.chrono li{position:relative;padding:0 0 1.35rem 1.6rem;max-width:62ch}
+.chrono li::before{
+  content:"";position:absolute;left:-7px;top:.45em;width:12px;height:12px;
+  background:var(--paper);border:2px solid var(--ink);border-radius:50%;
+}
+.chrono li.rupture::before{background:var(--rouge);border-color:var(--rouge)}
+.chrono time{
+  display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--bleu);margin-bottom:.15rem;
+}
+.chrono li.rupture time{color:var(--rouge)}
+.chrono b{font-family:var(--disp);font-weight:700;font-stretch:105%}
+
+/* ---------- Simulateur de falaise ---------- */
+.falaise{
+  background:var(--ink);color:var(--paper);
+  padding:2.4rem clamp(1.2rem,4vw,2.6rem);margin:2rem 0;
+}
+.falaise .titre-sim{
+  font-family:var(--disp);font-weight:900;font-stretch:112%;font-size:1.5rem;
+  text-transform:uppercase;margin-bottom:.4rem;
+}
+.falaise .note-sim{font-size:.92rem;color:#B9BCB2;max-width:60ch;margin-bottom:1.8rem}
+.falaise label{
+  display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:.6rem;color:#B9BCB2;
+}
+.falaise input[type=range]{
+  width:100%;appearance:none;height:4px;border-radius:2px;
+  background:linear-gradient(to right,#5f6d59 0%,#5f6d59 77.9%,var(--rouge) 77.9%,var(--rouge) 100%);
+  outline-offset:6px;cursor:pointer;
+}
+.falaise input[type=range]::-webkit-slider-thumb{
+  appearance:none;width:26px;height:26px;border-radius:50%;
+  background:var(--paper);border:4px solid var(--rouge);cursor:grab;
+}
+.falaise input[type=range]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--paper);border:4px solid var(--rouge);cursor:grab;
+}
+.sim-lecture{
+  display:flex;flex-wrap:wrap;gap:1rem 2.4rem;align-items:baseline;
+  margin:1.3rem 0 1.6rem;
+}
+.sim-lecture .rev b{
+  font-family:var(--disp);font-weight:900;font-size:2.4rem;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+}
+.sim-lecture .statut{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.4rem .8rem;border:1.5px solid currentColor;
+}
+.sim-lecture .statut.ok{color:#9FCE9A}
+.sim-lecture .statut.ko{color:#FF8A70}
+.droits{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:#3a3e42}
+.droit{background:#22262B;padding:1rem 1.1rem;transition:background .35s,opacity .35s}
+.droit h4{font-family:var(--disp);font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+.droit p{font-size:.84rem;color:#B9BCB2;line-height:1.5}
+.droit .cout{
+  display:inline-block;margin-top:.55rem;font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.06em;color:#9FCE9A;
+}
+.droit.perdu{background:#3A1810}
+.droit.perdu .cout{color:#FF8A70}
+.droit.perdu h4::after{content:" — perdu";color:#FF8A70;font-weight:400;font-size:.8rem}
+.sim-bilan{
+  margin-top:1.6rem;padding-top:1.3rem;border-top:1px dashed #5a5e63;
+  display:flex;flex-wrap:wrap;gap:.6rem 2.4rem;align-items:baseline;
+}
+.sim-bilan b{
+  font-family:var(--disp);font-weight:900;font-size:1.7rem;
+  font-variant-numeric:tabular-nums;color:#FF8A70;
+}
+.sim-bilan span{font-size:.9rem;color:#B9BCB2;max-width:44ch}
+
+/* triple test */
+.tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin:1.6rem 0}
+.test{border:1.5px solid var(--ink);padding:1.2rem 1.2rem 1.1rem;background:var(--paper-2);position:relative}
+.test .n{
+  position:absolute;top:-1px;right:-1px;background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;padding:.3rem .55rem;
+}
+.test h4{font-family:var(--disp);font-weight:900;font-stretch:108%;text-transform:uppercase;font-size:1rem;margin-bottom:.5rem}
+.test p{font-size:.9rem;line-height:1.55;color:var(--ink-soft)}
+
+/* trois registres */
+.registres{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin:1.5rem 0}
+.registre{border-top:4px solid var(--ink);padding-top:.9rem}
+.registre.r1{border-color:var(--rouge)}
+.registre.r2{border-color:var(--bleu)}
+.registre.r3{border-color:var(--gris)}
+.registre .tag{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);display:block;margin-bottom:.4rem;
+}
+.registre h4{font-family:var(--disp);font-weight:700;font-size:1.05rem;margin-bottom:.4rem}
+.registre p{font-size:.92rem;line-height:1.6;color:var(--ink-soft)}
+
+/* citation pleine largeur */
+.plein{
+  background:var(--rouge);color:var(--paper);
+  padding:4rem 24px;
+}
+.plein blockquote{
+  max-width:var(--maxw);margin:0 auto;
+  font-family:var(--disp);font-weight:900;font-stretch:112%;
+  font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.15;text-transform:uppercase;
+}
+.plein cite{
+  display:block;margin-top:1.4rem;font-family:var(--mono);font-style:normal;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;max-width:var(--maxw);
+  margin-left:auto;margin-right:auto;opacity:.85;
+}
+
+/* sources & pied */
+.sources ul{list-style:none}
+.sources li{
+  padding:.55rem 0;border-bottom:1px solid var(--hairline);
+  font-size:.92rem;display:flex;gap:.9rem;align-items:baseline;
+}
+.sources li::before{
+  content:"§";font-family:var(--mono);color:var(--rouge);font-size:.8rem;flex-shrink:0;
+}
+footer{
+  border-top:2px solid var(--ink);margin-top:3rem;
+  background:var(--paper-2);
+}
+footer .in{max-width:var(--maxw);margin:0 auto;padding:2.6rem 24px;display:grid;gap:1.6rem;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+@media(max-width:720px){footer .in{grid-template-columns:1fr}}
+footer p{font-size:.9rem;color:var(--ink-soft);max-width:60ch}
+footer .sig{
+  font-family:var(--mono);font-size:.78rem;line-height:1.8;color:var(--ink);
+}
+footer .sig b{color:var(--rouge)}
+.retour{
+  display:inline-block;margin-top:1rem;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+/* apparition douce */
+.piece{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.piece.vu{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.piece{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="barre" aria-hidden="true"></div>
+
+<nav aria-label="Sommaire du dossier">
+  <div class="in">
+    <a class="marque" href="#haut">LA <em>LIGNE</em></a>
+    <ol>
+      <li><a href="#piece1">Le pacte</a></li>
+      <li><a href="#piece2">Le basculement</a></li>
+      <li><a href="#piece3">La falaise</a></li>
+      <li><a href="#piece4">L'onde de choc</a></li>
+      <li><a href="#piece5">Le droit</a></li>
+      <li><a href="#piece6">La rue</a></li>
+      <li><a href="#piece7">Et nous</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </div>
+</nav>
+
+<header class="hero" id="haut">
+  <p class="eyebrow">Dossier citoyen · Belgique · 1944 → 2026</p>
+  <h1>Il y a une ligne.<br>De quel côté <span class="rouge">vivez-vous&nbsp;?</span></h1>
+  <p class="sous">En 2026, la sécurité matérielle de millions de Belges tient à un chiffre&nbsp;: <strong>28&nbsp;054,93&nbsp;€</strong> de revenus bruts annuels. Un centime au-dessus, et tout un pan de droits s'effondre. Ce dossier raconte comment on en est arrivé là — depuis le Pacte social de 1944 jusqu'aux réformes de la coalition Arizona — et ce que ça change quand on le regarde à hauteur de citoyen.</p>
+  <div class="chiffres" role="list" aria-label="Chiffres-clés du dossier">
+    <div role="listitem"><b data-cible="2400000" data-suffixe="">2,4&nbsp;M</b><small>bénéficiaires du statut BIM (21&nbsp;% de la population, mi-2025)</small></div>
+    <div role="listitem" class="alerte"><b>~168&nbsp;000</b><small>exclusions du chômage prévues par l'ONEM d'ici juillet 2027</small></div>
+    <div role="listitem"><b>23,3&nbsp;Md&nbsp;€</b><small>plan d'assainissement budgétaire fédéral à l'horizon 2029</small></div>
+    <div role="listitem" class="alerte"><b>−135&nbsp;€/mois</b><small>perte nette d'une mère seule reprenant un temps plein au salaire minimum</small></div>
+    <div role="listitem"><b>+1&nbsp;M</b><small>jours de grève cumulés — record depuis le «&nbsp;plan global&nbsp;» de 1993</small></div>
+  </div>
+</header>
+
+<div class="seuil" aria-hidden="true"><span>seuil BIM 2026 — 28 054,93 € — ligne de rupture</span></div>
+
+<main>
+<!-- ================= PIÈCE 1 ================= -->
+<section class="piece" id="piece1">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;1 · Mémoire</span>
+    <h2>Le pacte&nbsp;: ce qu'on nous avait promis</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede drop">Avant d'être un budget, la sécurité sociale belge est une promesse écrite dans la clandestinité. En avril 1944, sous l'Occupation, syndicalistes et patrons rédigent en secret le «&nbsp;Projet d'accord de solidarité sociale&nbsp;». Le 28 décembre 1944, le ministre Achille Van Acker le promulgue&nbsp;: la «&nbsp;sécurité d'existence&nbsp;» devient un droit inconditionnel, géré paritairement, financé par l'ONSS nouvellement créé.</p>
+      <p>Ce pacte n'est pas tombé du ciel. Il est l'aboutissement d'un siècle de luttes&nbsp;: la révolte ouvrière de 1886, qui force l'État à ses premières lois protectrices&nbsp;; les conquêtes de 1918-1919 (suffrage universel masculin, libertés syndicales)&nbsp;; la grève générale de l'été 1936 — un demi-million de travailleurs — qui arrache le salaire minimum, six jours de congés payés et la marche vers les 40 heures.</p>
+      <p>À la Libération, le compromis fordiste se scelle&nbsp;: hausse immédiate de 40&nbsp;% des salaires par rapport à 1940, redistribution des gains de productivité, concertation paritaire ancrée par la loi de 1948. Le postulat&nbsp;: la sécurité des travailleurs et la prospérité des entreprises se renforcent mutuellement. Il faut le dire aussi&nbsp;: ce premier État-providence avait ses angles morts — dès 1944, la CSC dénonçait l'absence de droits propres pour les femmes au foyer.</p>
+      <p>Ce modèle a encaissé des chocs — la Question royale de 1950 et ses morts de Grâce-Berleur, la guerre scolaire, la «&nbsp;Grève du Siècle&nbsp;» de l'hiver 1960-1961 contre la Loi Unique (34 jours de paralysie), puis l'austérité Martens-Gol des années 1980 et le plan global de 1993. À chaque fois, le conflit s'est réglé <em>à l'intérieur</em> du modèle. C'est précisément ce qui, aujourd'hui, semble ne plus tenir.</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>Mon grand-père cotisait sans se demander «&nbsp;à quoi j'ai droit&nbsp;». Il disait «&nbsp;on cotise pour ceux qui tombent, et le jour où je tombe, on cotisera pour moi&nbsp;».</p>
+      <p>La question de 2026 n'est pas comptable. C'est&nbsp;: cette phrase est-elle encore vraie&nbsp;?</p>
+    </aside>
+  </div>
+</section>
+
+<div class="seuil" aria-hidden="true"><span>28 054,93 €</span></div>
+
+<!-- ================= PIÈCE 2 ================= -->
+<section class="piece" id="piece2">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;2 · Constat</span>
+    <h2>Le basculement&nbsp;: 2025–2026, l'an I de l'activation contrainte</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede">Le 3 février 2025, après 237 jours de négociation, le gouvernement De Wever prête serment. La coalition «&nbsp;Arizona&nbsp;» (N-VA, MR, Les Engagés, Vooruit, CD&amp;V) se donne une feuille de route&nbsp;: plus de 23&nbsp;milliards d'euros d'économies d'ici 2029, sous la pression d'une procédure européenne pour déficit excessif. Son pari&nbsp;: porter le taux d'emploi à 80&nbsp;% par l'«&nbsp;activation&nbsp;».</p>
+      <p>Soyons honnêtes sur l'argument gouvernemental, car il existe&nbsp;: un déficit à 4,6&nbsp;% du PIB en 2024, un vieillissement qui pèse sur les pensions et la santé, et la conviction que le chômage illimité — une exception belge — produisait des «&nbsp;effets pervers&nbsp;». Le ministre Clarinval parle de réformes «&nbsp;nécessaires pour garantir la pérennité de notre sécurité sociale&nbsp;». La question citoyenne n'est pas de nier le déficit&nbsp;; elle est de regarder <em>qui</em> paie l'ajustement, et <em>comment</em>.</p>
+      <h3>Ce qui a changé, concrètement</h3>
+      <table>
+        <caption>Réformes structurelles 2025–2026 — lecture croisée du corpus</caption>
+        <tr><th>Domaine</th><th>Avant</th><th>Après (Arizona)</th></tr>
+        <tr><td><b>Chômage</b></td><td>Indemnisation illimitée dans le temps (spécificité belge depuis 1944)</td><td>Maximum 24 mois, dégressivité accélérée, stage d'attente uniformisé à un an. Premières vagues d'exclusion dès janvier–juillet 2026.</td></tr>
+        <tr><td><b>Pensions</b></td><td>Périodes assimilées largement prises en compte</td><td>Carrière de 42 ans avec 234 jours effectifs/an pour la pension minimum&nbsp;; réduction rétroactive des périodes assimilées&nbsp;; bonus-malus dès 2027. Le RCC (prépension) est supprimé.</td></tr>
+        <tr><td><b>Salaires</b></td><td>Indexation automatique intégrale</td><td>Marge réelle gelée (loi de 1996) et «&nbsp;Centenindex&nbsp;»&nbsp;: indexation plafonnée au-dessus de 4&nbsp;000&nbsp;€ bruts/mois à partir de juin 2026.</td></tr>
+        <tr><td><b>Santé</b></td><td>Norme de croissance calibrée sur le vieillissement</td><td>Norme réduite pour 2026, hausse des tickets modérateurs&nbsp;; volonté affichée (N-VA) de réduire de moitié les bénéficiaires du statut BIM.</td></tr>
+        <tr><td><b>Malades de longue durée</b></td><td>Trajets de réintégration incitatifs</td><td>Sanctions financières portées à 10&nbsp;% des indemnités en cas de «&nbsp;non-coopération&nbsp;» — pour ~576&nbsp;000 personnes, dont 70&nbsp;% d'affections mentales et ostéoarticulaires.</td></tr>
+        <tr><td><b>Travail</b></td><td>Encadrement de la norme salariale classique</td><td>Flexi-jobs étendus (plafond 18&nbsp;000&nbsp;€), travail de nuit libéralisé, annualisation du temps de travail, période d'essai réintroduite.</td></tr>
+      </table>
+      <p>Chaque ligne de ce tableau peut se défendre isolément dans un débat budgétaire. C'est leur <em>addition</em>, sur les mêmes ménages, dans le même calendrier, qui produit autre chose qu'une somme de réformes&nbsp;: un changement de régime. Le corpus parle d'un passage «&nbsp;de la sécurité d'existence à l'activation contrainte&nbsp;». L'Institut fédéral des droits humains, lui, y voit un possible recul injustifié du niveau de protection — ce qui, on le verra en pièce n°&nbsp;5, n'est pas une opinion mais un concept juridique.</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>On me dit «&nbsp;il faut activer les gens&nbsp;». Mais activer vers quoi&nbsp;? Les chiffres de 2026 montrent ~10&nbsp;% de retour durable à l'emploi chez les exclus, et 40,8&nbsp;% qui basculent au CPAS.</p>
+      <p>Quand le tiers prévu devient 40&nbsp;%, ce n'est plus une marge d'erreur. C'est le modèle qui est faux.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="seuil" aria-hidden="true"><span>28 054,93 €</span></div>
+
+<!-- ================= PIÈCE 3 ================= -->
+<section class="piece" id="piece3">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;3 · Démonstration</span>
+    <h2>La falaise&nbsp;: quand travailler appauvrit</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede">Voici le cœur mathématique du dossier, et le plus contre-intuitif. Le statut BIM (intervention majorée) ouvre une galaxie de droits dérivés&nbsp;: tarif social de l'énergie, plafond médical protecteur, transports quasi gratuits, exemptions communales. Son plafond 2026&nbsp;: 28&nbsp;054,93&nbsp;€ bruts par an pour un isolé. Or un temps plein au salaire minimum légal (2&nbsp;189,81&nbsp;€ brut/mois), pécule et treizième mois compris, dépasse 30&nbsp;000&nbsp;€.</p>
+      <p>L'État exige donc de reprendre un emploi dont le salaire légal minimum fait mécaniquement franchir le seuil qui protège de la pauvreté. Et le franchissement n'est pas progressif&nbsp;: un centime de trop, et la radiation est immédiate, absolue, pour tout le ménage. C'est «&nbsp;l'effet de falaise&nbsp;». Essayez vous-même.</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>On m'a appris que le travail paie. Personne ne m'a appris qu'en Belgique, le taux de piège au chômage atteint 85,6&nbsp;% — parmi les pires de l'OCDE.</p>
+      <p>Ce n'est pas de la paresse. C'est de l'arithmétique.</p>
+    </aside>
+  </div>
+
+  <div class="falaise" role="group" aria-label="Simulateur de l'effet de falaise">
+    <p class="titre-sim">Simulateur — franchissez la ligne</p>
+    <p class="note-sim">Déplacez le curseur du revenu brut annuel d'une personne isolée et observez ce qui se passe autour du seuil de 28&nbsp;054,93&nbsp;€. Montants indicatifs 2026 issus du corpus documentaire.</p>
+    <label for="revenu">Revenu brut annuel imposable</label>
+    <input type="range" id="revenu" min="20000" max="36000" step="50" value="26000"
+      aria-describedby="lecture-statut lecture-bilan">
+    <div class="sim-lecture">
+      <span class="rev"><b id="rev-aff">26 000 €</b></span>
+      <span class="statut ok" id="lecture-statut">Statut BIM maintenu</span>
+      <span id="marge-seuil" style="font-family:var(--mono);font-size:.75rem;color:#B9BCB2"></span>
+    </div>
+    <div class="droits">
+      <div class="droit" id="d-energie">
+        <h4>Tarif social énergie</h4>
+        <p>Protection contre le marché libre du gaz et de l'électricité.</p>
+        <span class="cout" data-ok="protégé" data-ko="jusqu'à −2 821 €/an">protégé</span>
+      </div>
+      <div class="droit" id="d-sante">
+        <h4>MAF social (santé)</h4>
+        <p>Reste à charge médical plafonné à 548,55 €/an, suppléments d'honoraires interdits.</p>
+        <span class="cout" data-ok="plafond 548,55 €" data-ko="plafond 1 219 € : −670,45 €/an">plafond 548,55 €</span>
+      </div>
+      <div class="droit" id="d-mobilite">
+        <h4>Mobilité</h4>
+        <p>Abonnement TEC à 12 €/an, De Lijn 68 €, STIB 8,10 €/mois, −40 % SNCB.</p>
+        <span class="cout" data-ok="tarifs réduits" data-ko="−300 à −500 €/an">tarifs réduits</span>
+      </div>
+      <div class="droit" id="d-communes">
+        <h4>Exemptions communales</h4>
+        <p>Taxes déchets et redevances locales exonérées ou réduites.</p>
+        <span class="cout" data-ok="exonéré" data-ko="−41 à −160 €/an">exonéré</span>
+      </div>
+    </div>
+    <div class="sim-bilan">
+      <b id="bilan-montant">0 €</b>
+      <span id="lecture-bilan">de droits dérivés perdus par an en franchissant le seuil — avant même de compter frais de garde et fiscalité marginale. Pour une mère seule reprenant un temps plein au salaire minimum, le bilan net documenté est de <strong style="color:#FF8A70">−135 € par mois</strong>.</span>
+    </div>
+  </div>
+
+  <div class="texte">
+    <p>Les économistes appellent cela le «&nbsp;piège à l'emploi&nbsp;»&nbsp;; le corpus, plus crûment, une «&nbsp;activation avec circonstances appauvrissantes&nbsp;». Pour les malades chroniques, c'est même un piège au carré&nbsp;: travailler davantage autorise le système à renchérir le coût de leur maladie. Aucune des réformes de 2025-2026 ne corrige cette falaise. Toutes y poussent davantage de monde.</p>
+  </div>
+</section>
+
+<div class="plein">
+  <blockquote>«&nbsp;Franchir le seuil d'un seul centime déclenche la radiation immédiate et irrévocable — pour l'intégralité du ménage.&nbsp;»</blockquote>
+  <cite>Mécanique du statut BIM, corpus documentaire, 2026</cite>
+</div>
+
+<!-- ================= PIÈCE 4 ================= -->
+<section class="piece" id="piece4">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;4 · Propagation</span>
+    <h2>L'onde de choc&nbsp;: la contagion des colères</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede">Une réforme isolée fabrique des mécontents. Des réformes simultanées sur des statuts interdépendants fabriquent autre chose&nbsp;: une convergence. Le corpus identifie cinq cohortes touchées en même temps, par des mécanismes différents mais liés.</p>
+      <table>
+        <caption>Cinq cohortes, une même mécanique (estimations 2025-2026)</caption>
+        <tr><th>Qui</th><th>Combien</th><th>Par quel levier</th></tr>
+        <tr><td><b>Chômeurs indemnisés</b></td><td>140 000 – 171 000</td><td>Limitation à 24 mois, exclusions par vagues dès mars-juillet 2026</td></tr>
+        <tr><td><b>Bénéficiaires du RIS (CPAS)</b></td><td>+174 000</td><td>Saturation locale&nbsp;; ~90 % des cohabitants rejetés à l'examen des revenus du ménage</td></tr>
+        <tr><td><b>Invalides et malades de longue durée</b></td><td>+576 000</td><td>Sanctions de 10 % sur les indemnités dans les trajets de réintégration</td></tr>
+        <tr><td><b>Bénéficiaires BIM</b></td><td>~2,5 millions</td><td>Projets d'audits patrimoniaux visant à radier ~600 000 personnes</td></tr>
+        <tr><td><b>Familles monoparentales &amp; travailleurs pauvres</b></td><td>~519 000 ménages</td><td>Effet de falaise&nbsp;: perte nette en cas de reprise d'emploi au salaire minimum</td></tr>
+      </table>
+      <h3>La géographie de l'implosion</h3>
+      <p>Le fédéral décide, le local encaisse. Sur les 97&nbsp;652 premières exclusions (janvier-mai 2026), 40,8&nbsp;% ont basculé vers les CPAS — contre un tiers prévu. À Liège&nbsp;: 61&nbsp;%. Charleroi&nbsp;: 59&nbsp;%. Mons&nbsp;: 56&nbsp;%. Verviers&nbsp;: 54&nbsp;%. Coût net pour les CPAS wallons&nbsp;: entre 380 et 441&nbsp;millions d'euros d'ici 2030, avec un financement fédéral dégressif (100&nbsp;% en 2026, 75&nbsp;% à terme). Des assistantes sociales gèrent 110 à 120 dossiers, jusqu'à 300 à Bruxelles&nbsp;; des délais de 10 à 12 mois s'installent, pendant lesquels les exclus n'ont <em>rien</em>.</p>
+      <h3>Le seuil des 3,5 %</h3>
+      <p>La politologue Erica Chenoweth a montré qu'une mobilisation active et soutenue d'environ 3,5&nbsp;% d'une population — quelque 413&nbsp;000 personnes en Belgique — suffit historiquement à faire plier un système. La manifestation du 14 octobre 2025 a rassemblé entre 80&nbsp;000 et 140&nbsp;000 personnes. L'addition des cohortes ci-dessus dépasse, elle, les deux millions. La question n'est donc pas la masse&nbsp;: c'est la jonction. Et l'effet de falaise, en appauvrissant <em>aussi</em> ceux qui travaillent, fabrique exactement cette jonction — le chômeur exclu, le travailleur pauvre et la classe moyenne auditée finissent par tenir le même raisonnement.</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>Longtemps, chacun a cru que c'était sa faute. Le chômeur «&nbsp;pas assez motivé&nbsp;», la mère seule «&nbsp;mal organisée&nbsp;», le malade «&nbsp;pas assez coopératif&nbsp;».</p>
+      <p>Le jour où l'on compare nos fiches de calcul, la honte change de camp. Les sociologues appellent ça le désenchevêtrement cognitif. Moi j'appelle ça&nbsp;: se parler.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="seuil" aria-hidden="true"><span>28 054,93 €</span></div>
+
+<!-- ================= PIÈCE 5 ================= -->
+<section class="piece" id="piece5">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;5 · Barricade</span>
+    <h2>Le droit&nbsp;: l'article 23 comme dernier verrou</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede">Quand la concertation sociale est mise à l'écart, le conflit se déplace. Depuis 2025, il s'est installé devant la Cour constitutionnelle. L'arme des syndicats et de la société civile porte un nom austère et une portée immense&nbsp;: le principe de <em>standstill</em>.</p>
+      <p>L'article 23 de la Constitution, introduit en 1994, garantit à chacun le droit de «&nbsp;mener une vie conforme à la dignité humaine&nbsp;»&nbsp;: travail, sécurité sociale, logement, environnement sain. La jurisprudence en a déduit un effet cliquet&nbsp;: le législateur ne peut pas réduire significativement le niveau de protection acquis sans justification impérieuse. Et grâce à la théorie du «&nbsp;point mobile&nbsp;» (Hachez, Dumont), le niveau de référence n'est pas celui de 1994, mais celui d'<em>hier</em> — juste avant la mesure contestée.</p>
+      <h3>Le triple test de l'arrêt 69/2023</h3>
+      <p>Depuis l'arrêt n°&nbsp;69/2023 du 27 avril 2023, toute régression sociale significative doit franchir trois épreuves cumulatives&nbsp;:</p>
+      <div class="tests">
+        <div class="test"><span class="n">Test 1</span><h4>Légitimité</h4><p>La mesure poursuit-elle un objectif d'intérêt général avéré&nbsp;? Assainir les finances publiques en est un — ce test, l'Arizona le passe.</p></div>
+        <div class="test"><span class="n">Test 2</span><h4>Nécessité</h4><p>Le recul est-il strictement indispensable&nbsp;? S'il existe une alternative moins destructrice (recettes fiscales ciblées plutôt que suppression d'une aide vitale), la mesure tombe.</p></div>
+        <div class="test"><span class="n">Test 3</span><h4>Proportionnalité</h4><p>La souffrance imposée aux précaires est-elle démesurée par rapport au gain budgétaire&nbsp;? C'est la balance finale — et le terrain principal des recours de 2026.</p></div>
+      </div>
+      <h3>La bataille en cours</h3>
+      <p>Le 29 octobre 2025, front commun syndical et société civile (Ligue des droits humains, Ligue des familles, BAPN, Soralia, Vie Féminine, Solidaris) déposent recours en annulation et demande de suspension contre la réforme du chômage. Le 15 janvier 2026, la Cour refuse la suspension — préjudice jugé non irréparable — mais l'examen au fond reste pendant, arrêt attendu avant fin 2026. D'autres recours visent la rétroactivité de la réforme des pensions, dénonçant une rupture de confiance légitime et une discrimination indirecte envers les femmes.</p>
+      <p>Deux précédents pèsent lourd. L'arrêt 115/2025 (11 septembre 2025) a suspendu le report de la zone de basses émissions bruxelloise&nbsp;: l'urgence économique n'a pas suffi à justifier un recul du droit à un environnement sain. Et par un retournement remarquable, les requérants mobilisent l'arrêt 117/2022 — où l'État avait justifié une régression par la lutte contre le piège à l'emploi — contre des réformes qui, preuves chiffrées à l'appui, <em>aggravent</em> ce même piège. L'État se retrouve désarmé de sa propre jurisprudence.</p>
+      <p>En parallèle, des milliers d'exclus saisissent les tribunaux du travail via l'exception d'illégalité (article 159 de la Constitution), et plusieurs communes — Forest, Saint-Gilles, Mons, Andenne — ont elles-mêmes introduit un recours. Quand des pouvoirs publics attaquent la loi d'autres pouvoirs publics pour protéger leurs habitants, c'est que quelque chose s'est déréglé dans l'architecture.</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>Je ne suis pas juriste. Mais j'ai compris ceci&nbsp;: la Constitution dit que l'urgence comptable ne dispense pas de la dignité humaine.</p>
+      <p>L'arrêt attendu fin 2026 ne validera pas qu'un budget. Il dira si l'État a encore le droit de défaire ce que trois générations ont construit.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="seuil" aria-hidden="true"><span>28 054,93 €</span></div>
+
+<!-- ================= PIÈCE 6 ================= -->
+<section class="piece" id="piece6">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;6 · Mobilisation</span>
+    <h2>La rue&nbsp;: chronique d'une année de bras de fer</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede">Plus d'un million de jours de grève cumulés&nbsp;: le record du «&nbsp;plan global&nbsp;» de Dehaene (1993) est en passe d'être battu. Mais contrairement aux poussées quasi insurrectionnelles de 1960-1961, le mouvement de 2025-2026 reste, pour l'instant, piloté par un front syndical uni — CSC, FGTB, CGSLB — à l'échelle nationale. C'est sa force, et peut-être sa dernière digue.</p>
+      <ol class="chrono">
+        <li><time>31 janvier – 3 février 2025</time><b>L'Arizona s'installe.</b> Accord de gouvernement après 237 jours&nbsp;; prestation de serment de Bart De Wever.</li>
+        <li><time>13 février, 31 mars, 29 avril 2025</time><b>Premières grèves nationales</b> contre l'accord de coalition.</li>
+        <li class="rupture"><time>18 juillet 2025</time><b>Loi-programme.</b> La limitation du chômage à 24 mois est votée. La FGTB parle du «&nbsp;plus grand recul social de ces 80 dernières années&nbsp;».</li>
+        <li><time>14 octobre 2025</time><b>140 000 personnes à Bruxelles.</b> Puis trois jours de grève nationale fin novembre — record de jours de grève.</li>
+        <li><time>29 octobre 2025</time><b>Le front juridique s'ouvre.</b> Recours en annulation et demande de suspension devant la Cour constitutionnelle.</li>
+        <li class="rupture"><time>1er janvier 2026</time><b>Entrée en vigueur.</b> Premières exclusions du chômage&nbsp;; taxe plus-values&nbsp;; flexibilisation. Fin janvier&nbsp;: grève des cheminots et rupture de la concertation ferroviaire.</li>
+        <li><time>12 mars 2026</time><b>Manifestation nationale d'envergure</b> à Bruxelles.</li>
+        <li class="rupture"><time>31 mars 2026</time><b>Grève générale interprofessionnelle.</b> Secteurs public et privé paralysés.</li>
+        <li><time>29 avril · 22 mai 2026</time><b>La pression se maintient.</b> Journée d'actions décentralisées, puis grande manifestation de la santé et du non-marchand.</li>
+        <li><time>Fin 2026 (attendu)</time><b>L'arrêt au fond de la Cour constitutionnelle</b> sur la réforme du chômage — le point de bascule du dossier.</li>
+      </ol>
+      <h3>La tentation coercitive</h3>
+      <p>Face à cette contestation, l'exécutif a exploré un chemin inquiétant&nbsp;: sanctions administratives communales accrues contre les manifestants, projet d'interdiction judiciaire de manifester, et avant-projet de «&nbsp;loi Quintin&nbsp;» permettant d'interdire des «&nbsp;organisations radicales&nbsp;» par voie extrajudiciaire. La levée de boucliers — constitutionnalistes, syndicats, société civile — a fait reculer partiellement le gouvernement&nbsp;: l'amendement retirant l'interdiction judiciaire de manifester a été voté à la Chambre le 8 janvier 2026. Mais l'intention dit quelque chose&nbsp;: démanteler un contrat social contre une population réfractaire suppose d'affaiblir ses contre-pouvoirs. C'est peut-être là le signal le plus grave du dossier.</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>Une grève me coûte un jour de salaire et un train raté. Je peste, comme tout le monde.</p>
+      <p>Puis je me souviens que mes congés payés viennent de la grève de 1936, et ma pension du pacte de 1944. Le désagrément d'un jour contre les acquis d'un siècle&nbsp;: le calcul est vite fait.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="seuil" aria-hidden="true"><span>28 054,93 €</span></div>
+
+<!-- ================= PIÈCE 7 ================= -->
+<section class="piece" id="piece7">
+  <div class="piece-tete">
+    <span class="piece-num">Pièce n°&nbsp;7 · Délibération</span>
+    <h2>Et nous, alors&nbsp;? Trois récits, une responsabilité</h2>
+  </div>
+  <div class="cols">
+    <div class="texte">
+      <p class="lede">«&nbsp;Rupture du contrat social&nbsp;»&nbsp;: l'expression elle-même est un champ de bataille. Un citoyen honnête doit tenir les trois récits ensemble avant de choisir le sien.</p>
+      <div class="registres">
+        <div class="registre r1"><span class="tag">Registre militant</span><h4>«&nbsp;Le pacte est brisé&nbsp;»</h4><p>Pour la FGTB, l'Arizona «&nbsp;fait voler en éclats le contrat social&nbsp;»&nbsp;: en six mois, le modèle né du pacte de 1944 a été cassé. Le monde associatif et le PTB parlent de «&nbsp;bain de sang social&nbsp;» et de démantèlement orchestré.</p></div>
+        <div class="registre r2"><span class="tag">Registre analytique</span><h4>«&nbsp;Un pilier est remis en cause&nbsp;»</h4><p>Le CRISP (Jean Faniel) constate une concertation sociale «&nbsp;mise à l'écart à tous les étages&nbsp;» — le patronat dans un fauteuil, les syndicats sur un tabouret bancal — sans reprendre le vocabulaire de la rupture. Prudence académique&nbsp;: le titre de son analyse est une question.</p></div>
+        <div class="registre r3"><span class="tag">Registre gouvernemental</span><h4>«&nbsp;Une réforme juste et nécessaire&nbsp;»</h4><p>Pour la majorité, il n'y a pas de rupture&nbsp;: les droits fondamentaux sont préservés, le déficit impose l'effort, et l'activation garantit la pérennité de la sécurité sociale contre ses «&nbsp;effets pervers&nbsp;».</p></div>
+      </div>
+      <p>Aucun de ces registres n'est la vérité neutre du dossier. Mais le citoyen n'est pas condamné à l'arbitrage des mots&nbsp;: il peut regarder les mécanismes. Et les mécanismes, eux, sont documentés — la falaise existe, la bascule vers les CPAS dépasse les prévisions, le retour à l'emploi des exclus plafonne autour de 10&nbsp;%, et la Cour constitutionnelle a été saisie précisément parce que la question dépasse l'opinion.</p>
+      <h3>Ce que la philosophe nous laisse</h3>
+      <p>Iris Marion Young appelait «&nbsp;modèle de la connexion sociale&nbsp;» l'idée que l'injustice structurelle n'a pas besoin de coupables pour exister — et que tous ceux qui participent aux structures qui la produisent portent une responsabilité <em>politique</em>, tournée vers l'avenir. Pas la culpabilité&nbsp;: la responsabilité de transformer les règles. Cela nous inclut. Voter, se syndiquer ou non, recourir ou renoncer, se taire ou témoigner&nbsp;: chacun de ces gestes reproduit ou fissure la structure.</p>
+      <h3>Quatre gestes à portée de citoyen</h3>
+      <p><strong>Vérifier ses droits et ceux de ses proches</strong> — le non-recours est massif&nbsp;: des dizaines de milliers de personnes n'activent pas le statut BIM auquel elles ont droit. <strong>Suivre deux chiffres</strong> — le taux de retour à l'emploi des exclus et le taux de bascule vers les CPAS&nbsp;: ce sont eux qui valideront ou invalideront le récit gouvernemental. <strong>Lire l'arrêt de fin 2026</strong> — pas les commentaires&nbsp;: l'arrêt. <strong>Croiser ses sources</strong> — gouvernementales, syndicales, institutionnelles (CRISP, Cour des comptes, ONEM) et associatives — parce qu'une démocratie sociale ne survit pas à des citoyens qui ne lisent qu'un seul registre.</p>
+      <p>Le pacte de 1944 a été écrit par des gens qui n'étaient d'accord sur presque rien, sauf sur une chose&nbsp;: on ne reconstruit pas un pays sur la peur de tomber. Quatre-vingts ans plus tard, la question qui traverse ce dossier est simple à formuler et vertigineuse à trancher&nbsp;: voulons-nous encore être la société qui cotise pour ceux qui tombent&nbsp;— ou celle qui trace une ligne, et regarde de l'autre côté&nbsp;?</p>
+    </div>
+    <aside class="marge">
+      <span class="qui">Réflexion citoyenne</span>
+      <p>Un contrat qu'une seule partie peut réécrire n'est plus un contrat. C'est un règlement d'ordre intérieur.</p>
+      <p>La bonne nouvelle du dossier&nbsp;: rien de tout cela n'est terminé. La Cour n'a pas tranché, la rue n'a pas cédé, et nous n'avons pas fini de lire.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section class="piece sources" id="sources">
+  <div class="piece-tete">
+    <span class="piece-num">Annexe · Corpus</span>
+    <h2>Sources et méthode</h2>
+  </div>
+  <div class="texte">
+    <p>Ce dossier est une synthèse réflexive rédigée à partir d'un corpus documentaire de cinq études réunies par le porteur du projet (juillet 2026), elles-mêmes adossées à des sources publiques&nbsp;: textes légaux, arrêts de la Cour constitutionnelle, avis de l'IFDH et du Conseil d'État, communiqués syndicaux et gouvernementaux, analyses du CRISP, données ONEM, INAMI et fédérations de CPAS. Les chiffres sont ceux du corpus&nbsp;; certains sont des données précoces, contestées entre gouvernement et CPAS («&nbsp;guerre des chiffres&nbsp;»), et doivent être lus comme tels.</p>
+    <ul>
+      <li>Baromètre social Belgique 2024-2026 — l'État social à la croisée des chemins&nbsp;: précaires, salariés, pouvoirs locaux, contestation.</li>
+      <li>Soulèvement, injustice et contagion sociale — injustice structurelle (I.&nbsp;M. Young), théorie du cadrage, seuil des 3,5&nbsp;% (Chenoweth), scénarios de contre-mobilisation.</li>
+      <li>Soulèvement populaire, analyse par contagion sociale — statut BIM, effet de falaise, phases de contagion inter-catégorielle.</li>
+      <li>Austérité Arizona et recours juridiques — trajectoire budgétaire, article 23, standstill, arrêts 69/2023, 117/2022, 115/2025 et 11/2026.</li>
+      <li>Ruptures du contrat social en Belgique (1886-2026) — genèse historique du pacte, crises de 1950, 1960-61, 1982, 1993.</li>
+      <li>Note de synthèse «&nbsp;rupture du contrat social&nbsp;» — les trois registres (militant, analytique, gouvernemental), chronologie et indicateurs à suivre.</li>
+    </ul>
+    <p style="margin-top:1.2rem">Parmi les références publiques citées dans le corpus&nbsp;: Cour constitutionnelle (fr.const-court.be), Institut fédéral des droits humains, accord de gouvernement fédéral 2025-2029 (belgium.be), CRISP, revue Politique («&nbsp;Décoder l'Arizona&nbsp;»), FGTB, CSC, INAMI, SPF Sécurité sociale.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="in">
+    <div>
+      <p><strong>Note d'intention.</strong> Ce dossier ne prétend pas à la neutralité d'un procès-verbal&nbsp;: il assume un point de vue — celui du citoyen qui lit, compare et délibère — tout en s'efforçant de présenter loyalement les trois registres du débat, y compris l'argumentaire gouvernemental. Les erreurs éventuelles d'interprétation sont celles de la synthèse, pas du corpus. Toute correction documentée est bienvenue via le dépôt GitHub.</p>
+      <a class="retour" href="#haut">↑ Revenir à la ligne</a>
+    </div>
+    <div class="sig">
+      Dossier rédigé et mis en page par<br>
+      <b>Claude</b> (Anthropic) — modèle d'intelligence artificielle,<br>
+      sur la base du corpus documentaire réuni par le porteur du projet.<br>
+      Pur HTML/CSS/JS, sans dépendance ni traceur.<br>
+      Juillet 2026 · <a href="https://github.com/ouaisfieu/essai">github.com/ouaisfieu/essai</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Barre de progression de lecture */
+  var barre=document.getElementById('barre');
+  function maj(){
+    var h=document.documentElement;
+    var p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+    barre.style.width=(p*100)+'%';
+  }
+  addEventListener('scroll',maj,{passive:true});maj();
+
+  /* Apparition des sections */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vu');io.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.piece').forEach(function(s){io.observe(s);});
+  }else{
+    document.querySelectorAll('.piece').forEach(function(s){s.classList.add('vu');});
+  }
+
+  /* Simulateur de falaise */
+  var SEUIL=28054.93;
+  var slider=document.getElementById('revenu');
+  if(slider){
+    var revAff=document.getElementById('rev-aff');
+    var statut=document.getElementById('lecture-statut');
+    var margeSeuil=document.getElementById('marge-seuil');
+    var bilan=document.getElementById('bilan-montant');
+    var droits=[
+      {el:document.getElementById('d-energie'), perte:2821},
+      {el:document.getElementById('d-sante'),   perte:670.45},
+      {el:document.getElementById('d-mobilite'),perte:400},
+      {el:document.getElementById('d-communes'),perte:100}
+    ];
+    var fmt=new Intl.NumberFormat('fr-BE',{maximumFractionDigits:0});
+    var fmt2=new Intl.NumberFormat('fr-BE',{minimumFractionDigits:2,maximumFractionDigits:2});
+    function rendre(){
+      var v=parseFloat(slider.value);
+      var franchi=v>SEUIL;
+      revAff.textContent=fmt.format(v)+' €';
+      slider.setAttribute('aria-valuetext',fmt.format(v)+' euros par an, '+(franchi?'seuil franchi, statut BIM perdu':'sous le seuil, statut BIM maintenu'));
+      if(franchi){
+        statut.textContent='Statut BIM perdu — radiation immédiate';
+        statut.classList.remove('ok');statut.classList.add('ko');
+        margeSeuil.textContent='+ '+fmt2.format(v-SEUIL)+' € au-dessus du seuil';
+      }else{
+        statut.textContent='Statut BIM maintenu';
+        statut.classList.remove('ko');statut.classList.add('ok');
+        margeSeuil.textContent='encore '+fmt2.format(SEUIL-v)+' € avant la falaise';
+      }
+      var total=0;
+      droits.forEach(function(d){
+        var c=d.el.querySelector('.cout');
+        if(franchi){
+          d.el.classList.add('perdu');
+          c.textContent=c.dataset.ko;
+          total+=d.perte;
+        }else{
+          d.el.classList.remove('perdu');
+          c.textContent=c.dataset.ok;
+        }
+      });
+      bilan.textContent=(franchi?'−':'')+fmt.format(Math.round(total))+' €';
+    }
+    slider.addEventListener('input',rendre);
+    rendre();
+  }
+})();
+</script>
+</body>
+</html>
